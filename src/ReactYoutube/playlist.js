@@ -32,6 +32,7 @@ class Playlist extends Component {
   }
 
   render() {
+
     return (
       <div className="container">
         <div className="card">
@@ -43,7 +44,7 @@ class Playlist extends Component {
                 <thead className="thead-light">
                   <tr>
                     <th>Title</th>
-                    <th>EmbLink</th>
+                    <th>VideoID</th>
                     <th>video</th>
                   </tr>
                 </thead>
@@ -51,13 +52,13 @@ class Playlist extends Component {
                   {this.state.ytlinks.map((ytlink) => (
                     <tr>
                       <td>{ytlink.title}</td>
-                      <td>{ytlink.emblink}</td>
+                      <td>{ytlink.emblink.split('/')[4]}</td>
                       <td>
                         <iframe
                           title={ytlink.title}
                           className="embed-responsive-item"
                           src={ytlink.emblink}
-                          allowfullscreen
+                          allowFullScreen
                         ></iframe>
                       </td>
                     </tr>

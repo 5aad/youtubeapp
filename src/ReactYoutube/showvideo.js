@@ -12,7 +12,7 @@ class Showvideo extends Component {
           <div className="card-body">
             <h3 className="card-title">Vide Title</h3>
             <a href="/playlist" >Playlist</a>
-            <Reactyoutube videoId="v64KOxKVLVg"/>
+            <Reactyoutube playerVars="taJ60kskkns" videoId="v64KOxKVLVg"/>
           </div>
         </div>
       </div>
