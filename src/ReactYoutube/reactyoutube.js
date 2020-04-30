@@ -1,7 +1,40 @@
 import React, { Component } from "react";
 import YouTube from "react-youtube";
+import firebase from "./Firebase";
 
 class Reactyoutube extends Component {
+
+    constructor(props) {
+        super(props);
+        this.ref = firebase.firestore().collection("youtubeLinks");
+        this.unsubscribe = null;
+        this.state = {
+          ytlinks: [],
+        };
+      }
+    
+      onCollectionUpdate = (querySnapshot) => {
+        const ytlinks = [];
+        querySnapshot.forEach((doc) => {
+          const { title, emblink } = doc.data();
+          ytlinks.push({
+            key: doc.id,
+            doc, // DocumentSnapshot
+            title,
+            emblink,
+          });
+        });
+        this.setState({
+          ytlinks,
+        });
+      };
+    
+      componentDidMount() {
+        this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate);
+      }
+
+
+
   videoOnReady(event) {
     // access to player in all event handlers via event.target
     // event.target.pauseVideo();
@@ -12,6 +45,9 @@ class Reactyoutube extends Component {
 //     event.target.nextVideo();
 //   }
   render() {
+
+    const plink = this.state.ytlinks.map((ytlink) => ytlink.emblink.split('/')[4])
+
     const opts = {
       height: "390",
       width: "640",
@@ -20,12 +56,12 @@ class Reactyoutube extends Component {
         // autoplay: 1,
         color: 'white',
         // next, prev video
-        playlist: 'taJ60kskkns'
+        playlist: plink.toString()
       },
     };
-    const {videoId} = this.props
+    // const {videoId} = this.props
     return (
-      <YouTube  videoId={videoId} opts={opts} onReady={this.videoOnReady}    />
+      <YouTube   opts={opts} onReady={this.videoOnReady}    />
     );
   }
 }
