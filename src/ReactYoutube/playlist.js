@@ -38,7 +38,7 @@ class Playlist extends Component {
         <div className="card">
           <div className="card-body">
             <h3 className="card-title">Playlist</h3>
-            <a href="/">ShowVideo</a>
+            <a href="/youtubeapp">ShowVideo</a>
             <div class="table-responsive">
               <table className="table table-striped">
                 <thead className="thead-light">
