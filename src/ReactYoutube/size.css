@@ -1,0 +1,19 @@
+
+  .float {
+    padding: 14px 21px;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background: linear-gradient(to right, #0062e6, #33aeff);
+    color: #fff;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 1px 2px 10px #999;
+  }
+
+  .sq {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
